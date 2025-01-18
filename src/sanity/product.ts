@@ -1,5 +1,8 @@
-// sanity/pet.ts
-export default {
+import { defineType, defineField, defineArrayMember } from "sanity"
+
+
+
+export const product =  {
     name: 'product',
     type: 'document',
     title: 'Product',
@@ -19,10 +22,15 @@ export default {
             type: 'image',
             title: 'Image'
         },
-        {
-            name: 'description',
-            type: 'string',
-            title: 'Description'
-        }
-    ]
-}
+        
+        defineField({
+            name: 'slug',
+            type : 'slug',
+            title: 'Slug',
+            options: {
+                source : "title",
+                    maxLength: 20 
+            },
+            validation: Rule => Rule.required()
+        }),
+    ]}
